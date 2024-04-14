@@ -1,0 +1,195 @@
+{% extends "layout.html" %} {% block body%}
+
+<main>
+  <section
+    class="hero d-flex justify-content-center align-items-center"
+    id="section_1"
+  >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7 col-12">
+          <div class="hero-text">
+            <div class="row">
+              <div class="col-lg-10 col-12">
+                <div class="profile-thumb">
+                  <div style="background: #bcbcbc" class="profile-title">
+                    <h4 style="color: #303832" class="mb-0">
+                      {{data["Symbol"]}}
+                    </h4>
+                  </div>
+
+                  <div class="profile-body">
+                    <p>
+                      <span
+                        style="color: #ffffff; min-width: 162px"
+                        class="profile-small-title"
+                        >Name</span
+                      >
+                      <span style="color: #ffffff">{{data["Name"]}}</span>
+                    </p>
+
+                    <p>
+                      <span
+                        style="color: #928080; min-width: 162px"
+                        class="profile-small-title"
+                        >AssetType</span
+                      >
+                      <span style="color: #928080">{{data["AssetType"]}}</span>
+                    </p>
+
+                    <p>
+                      <span
+                        style="color: #ffffff; min-width: 162px"
+                        class="profile-small-title"
+                        >Exchange</span
+                      >
+                      <span style="color: #ffffff">{{data["Exchange"]}}</span>
+                    </p>
+
+                    <p>
+                      <span
+                        style="color: #928080; min-width: 162px"
+                        class="profile-small-title"
+                        >Sector</span
+                      >
+                      <span style="color: #928080">{{data["Sector"]}}</span>
+                    </p>
+                    <p>
+                      <span
+                        style="color: #ffffff; min-width: 162px"
+                        class="profile-small-title"
+                        >Industry</span
+                      >
+                      <span style="color: #ffffff">{{data["Industry"]}}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 col-12 position-relative">
+          <div style="background: black" class="hero-image-wrap">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title" style="color: #303832">About Comapny</h5>
+
+                <p style="color: #544667" class="card-text">
+                  {{data["Description"][:600]}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path
+        fill="#535da1"
+        fill-opacity="1"
+        d="M0,160L24,160C48,160,96,160,144,138.7C192,117,240,75,288,64C336,53,384,75,432,106.7C480,139,528,181,576,208C624,235,672,245,720,240C768,235,816,213,864,186.7C912,160,960,128,1008,133.3C1056,139,1104,181,1152,202.7C1200,224,1248,224,1296,197.3C1344,171,1392,117,1416,90.7L1440,64L1440,0L1416,0C1392,0,1344,0,1296,0C1248,0,1200,0,1152,0C1104,0,1056,0,1008,0C960,0,912,0,864,0C816,0,768,0,720,0C672,0,624,0,576,0C528,0,480,0,432,0C384,0,336,0,288,0C240,0,192,0,144,0C96,0,48,0,24,0L0,0Z"
+      ></path>
+    </svg>
+  </section>
+
+  <!-- Company stastical Information -->
+
+  <section class="featured section-padding">
+    <div class="compnay_stat_div">
+      <h1 class="company_stat_title">Statistical Information About Company</h1>
+      <div class="stat_info_div">
+        <div class="container text-center stat_value">
+          <div class="row">
+            <div class="col stat_value_div featured-border-bottom">
+              <strong class="featured-numbers">${{data["BookValue"]}}</strong>
+              <p class="featured-text stat_type_name">BookValue</p>
+            </div>
+            <div
+              class="col stat_value_div featured-border-start featured-border-bottom"
+            >
+              <strong class="featured-numbers"
+                >${{data["MarketCapitalization"]}}</strong
+              >
+              <p class="featured-text stat_type_name">MarketCapitalization</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col stat_value_div featured-border-bottom">
+              <strong class="featured-numbers">${{data["EBITDA"]}}</strong>
+              <p class="featured-text stat_type_name">EBITDA</p>
+            </div>
+            <div
+              class="col stat_value_div featured-border-start featured-border-bottom"
+            >
+              <strong class="featured-numbers">${{data["EPS"]}}</strong>
+              <p class="featured-text stat_type_name">Earnings Per Share</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col stat_value_div featured-border-bottom">
+              <strong class="featured-numbers">${{data["RevenueTTM"]}}</strong>
+              <p class="featured-text stat_type_name">Revenue</p>
+            </div>
+            <div
+              class="col stat_value_div featured-border-start featured-border-bottom"
+            >
+              <strong class="featured-numbers">${{data["EBITDA"]}}</strong>
+              <p class="featured-text stat_type_name">Gross Profit</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col stat_value_div featured-border-bottom">
+              <strong class="featured-numbers">${{data["PERatio"]}}</strong>
+              <p class="featured-text stat_type_name">PERatio</p>
+            </div>
+            <div
+              class="col stat_value_div featured-border-start featured-border-bottom"
+            >
+              <strong class="featured-numbers">
+                {{data["DividendYield"]}}</strong
+              >
+
+              <p class="featured-text stat_type_name">DividendYield</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col stat_value_div featured-border-bottom">
+              <strong class="featured-numbers"
+                >${{data["ReturnOnEquityTTM"]}}</strong
+              >
+              <p class="featured-text stat_type_name">ROE</p>
+            </div>
+            <div
+              class="col stat_value_div featured-border-start featured-border-bottom"
+            >
+              <strong class="featured-numbers"
+                >${{data["ProfitMargin"]}}</strong
+              >
+              <p class="featured-text stat_type_name">ProfitMargin</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col stat_value_div featured-border-bottom">
+              <strong class="featured-numbers">${{data["52WeekHigh"]}}</strong>
+              <p class="featured-text stat_type_name">52WeekHigh</p>
+            </div>
+            <div
+              class="col stat_value_div featured-border-start featured-border-bottom"
+            >
+              <strong class="featured-numbers">${{data["52WeekLow"]}}</strong>
+              <p class="featured-text stat_type_name">52WeekLow</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% endblock%}
+</main>

@@ -1,0 +1,254 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Symbol Search</title>
+    <style>
+        #suggestionsContainer {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        .suggestion {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .suggestion:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="searchInput" placeholder="Search for a stock symbol">
+    <ul id="suggestionsContainer"></ul>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const suggestionsContainer = document.getElementById('suggestionsContainer');
+
+        searchInput.addEventListener('input', function () {
+            const query = searchInput.value.trim();
+
+            // Clear previous suggestions
+            suggestionsContainer.innerHTML = '';
+
+            // Fetch suggestions from Alpha Vantage API
+            fetch(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${query}&apikey=C64R8UNNHXD9XAQJ`)
+                .then(response => response.json())
+                .then(data => {
+                    // Display suggestions
+                    data.bestMatches.forEach(match => {
+                        const symbol = match['1. symbol'];
+                        const name = match['2. name'];
+
+                        const suggestionElement = document.createElement('li');
+                        suggestionElement.classList.add('suggestion');
+                        suggestionElement.textContent = `${symbol} - ${name}`;
+
+                        suggestionElement.addEventListener('click', function () {
+                            // Populate search input with selected symbol
+                            searchInput.value = symbol;
+                            suggestionsContainer.innerHTML = ''; // Clear suggestions
+                        });
+
+                        suggestionsContainer.appendChild(suggestionElement);
+                    });
+                })
+                .catch(error => console.error('Error fetching suggestions:', error));
+        });
+
+        // Hide suggestions container when clicking outside of it
+        document.addEventListener('click', function (event) {
+            if (!suggestionsContainer.contains(event.target)) {
+                suggestionsContainer.innerHTML = ''; // Clear suggestions
+            }
+        });
+    </script>
+</body>
+
+</html> -->
+
+
+
+<!-- <!DOCTYPE html> -->
+<!-- <html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <canvas id="stockChart" width="800" height="400"></canvas>
+
+    <script>
+        // Function to fetch data from Alpha Vantage API
+        function fetchData() {
+            const apiUrl = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=RELIANCE.BSE&outputsize=full&apikey=demo';
+
+            return fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // Extract dates and close prices
+                    const dates = Object.keys(data['Time Series (Daily)']).reverse();
+                    const closePrices = dates.map(date => parseFloat(data['Time Series (Daily)'][date]['4. close']));
+
+                    return { dates, closePrices };
+                });
+        }
+
+        // Function to create chart
+        function createChart(labels, data) {
+            const ctx = document.getElementById('stockChart').getContext('2d');
+            const stockChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Close Price',
+                        data: data,
+                        borderColor: 'blue',
+                        borderWidth: 1,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        xAxes: [{
+                            type: 'time',
+                            time: {
+                                unit: 'day'
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Close Price (INR)'
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+
+        // Fetch data and create chart
+        fetchData()
+            .then(data => {
+                createChart(data.dates, data.closePrices);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    </script>
+</body>
+
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autocomplete Search</title>
+    <style>
+        .autocomplete {
+            position: relative;
+        }
+
+        #suggestionsContainer {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            border: 1px solid #ccc;
+            border-top: none;
+            position: absolute;
+            width: 100%;
+        }
+
+        .suggestion {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .suggestion:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <input id="searchInput" type="text" name="search" placeholder="Search...">
+    <ul id="suggestionsContainer"></ul>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const suggestionsContainer = document.getElementById('suggestionsContainer');
+
+        searchInput.addEventListener('input', async function () {
+            const inputValue = this.value.trim();
+            if (!inputValue) {
+                suggestionsContainer.innerHTML = '';
+                return;
+            }
+
+            const url = `https://yahoo-finance15.p.rapidapi.com/api/v1/markets/search?search=${inputValue}`;
+            const options = {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': 'c763a1ff3dmsh6a56a980225e75cp16acbbjsn058a0a2dbc7f',
+                    'X-RapidAPI-Host': 'yahoo-finance15.p.rapidapi.com'
+                }
+            };
+
+            try {
+                const response = await fetch(url, options);
+                const data = await response.json();
+                displaySuggestions(data.body);
+            } catch (error) {
+                console.error(error);
+            }
+        });
+
+        function displaySuggestions(suggestions) {
+            suggestionsContainer.innerHTML = '';
+            suggestions.forEach(item => {
+                const suggestionElement = document.createElement('li');
+                suggestionElement.classList.add('suggestion');
+                suggestionElement.textContent = item.symbol;
+                suggestionElement.addEventListener('click', function () {
+                    searchInput.value = item.symbol;
+                    suggestionsContainer.innerHTML = '';
+                });
+                suggestionsContainer.appendChild(suggestionElement);
+            });
+        }
+
+        // Hide suggestions container when clicking outside of it
+        document.addEventListener('click', function (event) {
+            if (!suggestionsContainer.contains(event.target) && event.target !== searchInput) {
+                suggestionsContainer.innerHTML = '';
+            }
+        });
+
+
+    </script>
+
+</body>
+
+</html>

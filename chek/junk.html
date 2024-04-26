@@ -268,9 +268,34 @@
             </section> -->
 
 
+<!-- ************ Company compare algorithm ************-->
+
+<!-- def compare_companys(d1 ,d2):
+comp1_score = 0
+comp2_score = 0
+insights_record = []
+
+indicators = ["PERatio" ,"PriceToBookRatio" ,"ReturnOnEquityTTM" ,"MarketCapitalization" ,"RevenueTTM"
+,"QuarterlyRevenueGrowthYOY" ,"DividendYield" ,"Beta" ,"ProfitMargin" ,"AnalystRatingBuy"]
+scores = [5 ,4 ,5 ,4 ,5 ,5 ,1 ,3 ,3 ,3 ,4]
+
+for ind ,scores in zip(indicators, scores):
+if(ind in ["PERatio" ,"PriceToBookRatio" ,"Beta"]):
+if(d1[ind] < d2[ind]): insights_record.append(d1["Symbol"]) comp1_score=comp1_score + scores else:
+    insights_record.append(d2["Symbol"]) comp2_score=comp2_score + scores else: if(d1[ind]> d2[ind]):
+    insights_record.append(d1["Symbol"])
+    comp1_score = comp1_score + scores
+    else:
+    insights_record.append(d2["Symbol"])
+    comp2_score = comp2_score + scores
+
+    if(comp1_score > comp2_score):
+    return zip(d1["Symbol"] ,insights_record)
+    else:
+    return zip(d2["Symbol"] ,insights_record) -->
 
 
-
+<!-- 
 {
 "Symbol": "TPET",
 "AssetType": "Common Stock",
@@ -323,4 +348,8 @@
 "SharesOutstanding": "36911800",
 "DividendDate": "None",
 "ExDividendDate": "None"
-}
+} -->
+
+
+
+<!DOCTYPE html>

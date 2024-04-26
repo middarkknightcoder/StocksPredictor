@@ -1,0 +1,163 @@
+                                        Title : Stocks Preditor 
+                                    ---------------------------------
+
+
+Description : Our Stocks Prediction app is project in which user enter name of compnay stocks so our app prediction for that compnay stocks based on machine learning and give result wia graph.
+              Also user can get information about compnay. compare any two compnays with each other which is help into find which compnay is better.
+
+Features : 
+
+    1. Prediction on Any company stocks 
+    2. Get information about compnay   [stastical information table ,intro ,chart ^ ,search company about news ^]  
+    3. Read news about stock market (real time news)   - Home pages news is done 
+    4. Compare Two compnay with each other. (and also suggest which company is best into select compnay)  - Done
+    5. Also Detect market news is fake or real. (Based on our Machine Learning Algorihm)
+    6. User maintain it's profile
+
+
+Sources : 
+
+    API : https://www.alphavantage.co/documentation/#company-overview
+    News API : https://newsapi.org/s/india-science-news-api
+
+
+
+Languages ,Libraries and Tools :
+
+    -> For Machine Learning Mode Creation
+
+        1. Python
+        2. Sci-kit Learn
+        3. Matplotlib ,Seaborn ,Plotly
+        4. Tensorflow
+        5. Keras
+        6. Nltk 
+
+    -> For Web creation
+
+        8. request (for data fetch from the Api)
+        7. Flask
+        8. Html 
+        9. Css
+        10. Js 
+        11. Bootstrap
+    
+    -> Data Bases:
+
+        1. MongoDB
+        2. My Sql  
+
+    -> Chart and Graph Creation 
+
+        1. Chart.Js
+        2. Plotly.Js
+
+
+Website clinet action Path : 
+
+    1. User Search Stocks Preditor
+    2. Home Page of Stocks Preditor (Where some stocks and news is exist for user)
+    3. Ask User to Create Account / Login
+
+    4. Stocks Prediction Page
+    5. Compnay stocks Compare Page
+    6. Compnay information Page
+    7. News Reading Page  (More News)
+    8. Fake News Detection Page where user Enter News or Url of News for detect news is fake or real. 
+    9. Personal User Profile Page
+   10. More Company See for the stock (More company)
+
+    11. About Us Page
+    12. Contact Us Page
+
+
+
+
+### Compare Company and Suggest Based on Indicators and Statistical information  :   
+
+=> Below Information is used for genrate Suggetion of company (in this we are used Fundamental Indecators)
+
+    - Symbol            
+    - Name 
+    - MarketCapitalization
+    - EBITDA
+    - PERatio
+    - PEGRatio
+    - DividendPerShare
+    - RevenuePerShareTTM
+    - EPS (Earnings per share)
+    - DividendYield
+    - PriceToBookRatio
+    - ReturnOnEquityTTM 
+    - ProfitMargin
+
+    Create UI in paint 
+
+
+=>>> For Create compare of company using the indicator
+
+    Price-to-Earnings (P/E) Ratio - 5 : Lower pe ration stock is chepaer
+    Price-to-Book (P/B) Ratio - 4  : Lower P/B ratio also represent stock is chepear
+
+    Return on Equity (ROE) - 5  :  higher ROE typically indicates better profitability and efficiency in utilizing shareholder equity.
+
+    Debt-to-Equity Ratio - 3  : lower Debt-to-Equity (D/E) ratio suggests that a company has less debt relative to its equity,
+
+    Revenue and Earnings Growth - 5  :  which is higer that is better
+
+    
+    Volatility - 2
+
+    
+    Dividend Yield - 3  : Higer Dividend Yield is better then the lower devidend but with you need to keep in mind ompany's stability, growth prospects, financial health, and dividend sustainability.
+
+    Market Capitalization - 4  :  Comparing market capitalizations can provide insight into the size and scale of a company within the market. Typically, larger market capitalizations suggest that a company is more established, has a larger market presence, and may be perceived as less risky compared to smaller companies.
+
+    ProfitMargin - 3  : Profit MArgin is higger is better
+
+    Beta - 2  :   In finance, beta measures the volatility or risk of a stock relative to the overall market. A beta of 1.0 indicates that the stock's price tends to move in line with the market, while a beta lower than 1.0 suggests lower volatility compared to the market, and a beta higher than 1.0 indicates higher volatility.
+
+    Analyst Recommendations - 3
+
+    
+
+### indicator used in compare algorithm :
+
+    Price-to-Earnings (P/E) Ratio - 5   L ( low is better then higer)
+    Price-to-Book (P/B) Ratio - 4   L
+    Return on Equity (ROE) - 5  H
+    Market Capitalization - 4    H
+    Debt-to-Equity Ratio - 3    Not used
+    Revenue -5   H
+    Earnings Growth - 5   H
+    Volatility - 2   Not used   
+    Dividend Yield - 1   H
+    Beta - 3   L 
+    ProfitMargin - 3   H
+    Analyst Recommendations - 4   H
+
+    =>>> Current used : ["forwardPE" ,"priceToBook"  ,"returnOnEquity" ,"enterpriseValue" ,"totalRevenue" ,"beta" ,"profitMargins" ,"numberOfAnalystOpinions"]
+
+    =>>> API used for the comparision :
+        
+        url1 = "https://yahoo-finance15.p.rapidapi.com/api/yahoo/qu/quote/{}/default-key-statistics".format(comp1)
+        
+        url1_2 = "https://yahoo-finance15.p.rapidapi.com/api/yahoo/qu/quote/{}/financial-data".format(comp1)
+
+------------------------------------------------------------------
+
+
+'''
+Price-to-Earnings (P/E) Ratio - 5   L ( low is better then higer)
+Price-to-Book (P/B) Ratio - 4   L
+Return on Equity (ROE) - 5  H
+Market Capitalization - 4    H
+Debt-to-Equity Ratio - 3    Not found
+Revenue -5   H
+Earnings Growth - 5   H
+Volatility - 2   Not found   
+Dividend Yield - 1   H
+Beta - 3   L 
+ProfitMargin - 3   H
+Analyst Recommendations - 4   H
+'''

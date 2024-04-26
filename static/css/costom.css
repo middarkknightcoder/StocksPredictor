@@ -1,15 +1,20 @@
-#suggestionsContainer {
+/*css for autocomplet suggestion */
+
+ #suggestionsContainer {
             list-style-type: none;
             padding: 0;
             margin: 0;
             border: 1px solid #ccc;
             border-top: none;
             color: #efe7e7;
+            overflow: hidden auto;
+            position: relative;
         }
 
         .suggestion {
             padding: 10px;
             cursor: pointer;
+           
         }
 
         .suggestion:hover {
@@ -20,8 +25,13 @@
 
             width:60%;
             height: 3rem;
-            border-radius: 1.5rem;
-        }
+            border-radius: 0.2rem;
+            margin: auto;
+            margin: 3% auto;
+        } 
+
+    
+  /* companyinfo.html page css */
 
         .compnay_stat_div{
             text-align: center;
@@ -57,4 +67,71 @@
             font-size: 1.7rem;
         }
 
+        /* Compare.html page css*/
+
+        .compare_input_div{
+            text-align: center;
+            width: 50%;
+            background-color: #85d9b5;
+            padding: 2%;
+            border-radius: 2rem;
+            margin-top: 3%;
+        }
+
+        .compare_form{
+            padding: 3%;
+        }
+
+        .compare_title{
+            background-color: #535DA1;
+            display: inline-block;
+            padding: 2%;
+            margin-bottom: 0%;
+             
+        }
+
+        /* compare_result.html table  */
+
+        .compare_result_table{
+
+          width: 80%;
+          margin-top: 4%;
+          background-color: #636ca6;
+          color: white;
+        }
+
+        .comp_resu_tab_head{
+
+            font-size: 1.6rem;
+            text-align: center;
+            border-right: 2.5px solid #5fe943;
+            color: #5fe943;
+
+        }
+
+        .comap_resu_indicator{
+            font-size: 1.1rem;
+            text-align: center;
+            border-right: 2.5px solid #5fe943;
+            
+        }
+
+        .comap_resu_values{
+            font-size: 1rem;
+            text-align: center;
+            border-right: 1px solid #ffffff;
+
+        }
+
+        .final_company{
+            width: 72%;
+            margin: auto;
+            text-align: center;
+            background-color: #85d9b5;        
+        }
+
+        .compare_restul_sec{
+            margin-top: 5%;
+            padding: 4%;
+        }
        

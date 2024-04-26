@@ -108,6 +108,7 @@
 
 // *************** Below code is write based on the rapid api call const url = 'https://yahoo-finance15.p.rapidapi.com/api/v1/markets/search?search=AA';
 
+// For searchbar-1s
 
 const searchInput = document.getElementById('searchInput');
 const suggestionsContainer = document.getElementById('suggestionsContainer');
@@ -123,7 +124,7 @@ searchInput.addEventListener('input', async function () {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'c763a1ff3dmsh6a56a980225e75cp16acbbjsn058a0a2dbc7f',
+            'X-RapidAPI-Key': '08f1541678msh2a4747804150020p1237efjsn27b025299ffd',
             'X-RapidAPI-Host': 'yahoo-finance15.p.rapidapi.com'
         }
     };
@@ -140,10 +141,10 @@ searchInput.addEventListener('input', async function () {
 function displaySuggestions(suggestions) {
     suggestionsContainer.innerHTML = '';
     suggestions.forEach(item => {
-        const suggestionElement = document.createElement('li');
+        const suggestionElement = document.createElement('option');
         suggestionElement.classList.add('suggestion');
         suggestionElement.style = "color:white;"
-        suggestionElement.textContent = item.symbol + "-" + item.name;
+        suggestionElement.textContent = `${item.symbol}`;
         suggestionElement.addEventListener('click', function () {
             searchInput.value = item.symbol;
             suggestionsContainer.innerHTML = '';
@@ -158,3 +159,10 @@ document.addEventListener('click', function (event) {
         suggestionsContainer.innerHTML = '';
     }
 });
+
+// You can see if not run any api form of autocomplete then used
+
+
+// For SeacrhBar-2
+
+

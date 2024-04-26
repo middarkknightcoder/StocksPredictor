@@ -9,11 +9,11 @@
     <meta name="description" content="" />
     <meta name="author" content="TemplateMo" />
 
-    <title>Stock Predictors</title>
+    <title>Stock Predictor</title>
     <link
       rel="icon"
       type="image/x-icon"
-      href="{{ url_for('static', filename='images/market-research.png') }}"
+      href="{{ url_for('static', filename='images/bull-market.png')}}"
     />
     <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -56,18 +56,15 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <a href="index.html" class="navbar-brand mx-auto mx-lg-0"
+        <a href="/" class="navbar-brand mx-auto mx-lg-0"
           >Stock Predictor</a
         >
 
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-lg-5">
-            <li class="nav-item">
-              <a class="nav-link" href="">Home</a>
-            </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="">Predict</a>
+              <a class="nav-link" href="/predict">Predict</a>
             </li>
 
             <li class="nav-item">
@@ -75,7 +72,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="">Compare</a>
+              <a class="nav-link" href="/compare">Compare</a>
             </li>
 
             <li class="nav-item">
@@ -119,6 +116,7 @@
         <script src="{{url_for("static" ,filename="js/custom.js")}}"></script>
         <script src="{{url_for("static" ,filename="js/app.js")}}"></script>
         <script src="{{url_for("static" ,filename="js/auto_complete_search.js")}}"></script>
+        <script src="{{url_for("static" ,filename="js/stock_chart.js")}}"></script>
 
     </body>
 </html>

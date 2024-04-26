@@ -158,7 +158,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<!-- <html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -249,6 +249,68 @@
 
     </script>
 
+</body>
+
+</html> -->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Daily Close Price</title>
+    <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <canvas id="stockChart" width="800" height="400"></canvas>
+    <script>
+        // script.js
+
+        // Fetch data from the API
+        fetch('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=RELIANCE.BSE&outputsize=compact&apikey=6V8HYZYHGF4V86E6')
+            .then(response => response.json())
+            .then(data => {
+                // Extract dates and close prices from the API response
+                const dates = Object.keys(data['Time Series (Daily)']);
+                const closePrices = dates.map(date => parseFloat(data['Time Series (Daily)'][date]['4. close']));
+
+                // Create a new Chart.js instance
+                const ctx = document.getElementById('stockChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: dates,
+                        datasets: [{
+                            label: 'Close Price',
+                            data: closePrices,
+                            borderColor: 'blue',
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            xAxes: [{
+                                type: 'time',
+                                time: {
+                                    unit: 'day'
+                                },
+                                distribution: 'linear'
+                            }],
+                            yAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Close Price'
+                                }
+                            }]
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+
+    </script> <!-- Your JavaScript code file -->
 </body>
 
 </html>

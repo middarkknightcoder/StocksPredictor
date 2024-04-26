@@ -14,7 +14,7 @@
                 <div class="profile-thumb">
                   <div style="background: #bcbcbc" class="profile-title">
                     <h4 style="color: #303832" class="mb-0">
-                      {{data["Symbol"]}}
+                      {{d_p["meta"]["symbol"]}}
                     </h4>
                   </div>
 
@@ -23,36 +23,37 @@
                       <span
                         style="color: #ffffff; min-width: 162px"
                         class="profile-small-title"
-                        >Name</span
+                        >Website</span
                       >
-                      <span style="color: #ffffff">{{data["Name"]}}</span>
+                      <span ><a style="color: #ffffff" href="{{d_p["body"]["website"]}}" target='_blank'>{{d_p["body"]["website"]}}</a></span>
                     </p>
-
                     <p>
                       <span
                         style="color: #928080; min-width: 162px"
                         class="profile-small-title"
-                        >AssetType</span
+                        >Country</span
                       >
-                      <span style="color: #928080">{{data["AssetType"]}}</span>
+                      <span style="color: #928080">{{d_p["body"]["country"]}}</span>
                     </p>
-
                     <p>
                       <span
                         style="color: #ffffff; min-width: 162px"
                         class="profile-small-title"
-                        >Exchange</span
+                        >City</span
                       >
-                      <span style="color: #ffffff">{{data["Exchange"]}}</span>
+                      <span style="color: #ffffff"
+                        >{{d_p["body"]["city"]}}</span
+                      >
                     </p>
-
                     <p>
                       <span
                         style="color: #928080; min-width: 162px"
                         class="profile-small-title"
                         >Sector</span
                       >
-                      <span style="color: #928080">{{data["Sector"]}}</span>
+                      <span style="color: #928080"
+                        >{{d_p["body"]["sector"]}}</span
+                      >
                     </p>
                     <p>
                       <span
@@ -60,7 +61,9 @@
                         class="profile-small-title"
                         >Industry</span
                       >
-                      <span style="color: #ffffff">{{data["Industry"]}}</span>
+                      <span style="color: #ffffff"
+                        >{{d_p["body"]["industry"]}}</span
+                      >
                     </p>
                   </div>
                 </div>
@@ -75,7 +78,7 @@
                 <h5 class="card-title" style="color: #303832">About Comapny</h5>
 
                 <p style="color: #544667" class="card-text">
-                  {{data["Description"][:600]}}
+                  {{d_p["body"]["longBusinessSummary"][:600]}}
                 </p>
               </div>
             </div>
@@ -97,70 +100,77 @@
 
   <section class="featured section-padding">
     <div class="compnay_stat_div">
-      <h1 class="company_stat_title">Statistical Information About Company</h1>
+      <div class="col-lg-8 col-md-8 col-12 ms-auto">
+                        <div style="background-color:#535da1" class="section-title-wrap d-flex justify-content-center align-items-center mb-4">
+                            <img src="images/white-desk-work-study-aesthetics.jpg" class="avatar-image img-fluid"
+                                alt="">
+
+                            <h2 class="text-white ms-4 mb-0">Statistical Information About Company</h2>
+                        </div>
+                    </div>
       <div class="stat_info_div">
         <div class="container text-center stat_value">
           <div class="row">
             <div class="col stat_value_div featured-border-bottom">
-              <strong class="featured-numbers">${{data["BookValue"]}}</strong>
+              <strong class="featured-numbers">${{d_s["body"]["bookValue"]["fmt"]}}</strong>
               <p class="featured-text stat_type_name">BookValue</p>
             </div>
             <div
               class="col stat_value_div featured-border-start featured-border-bottom"
             >
               <strong class="featured-numbers"
-                >${{data["MarketCapitalization"]}}</strong
+                >${{d_s["body"]["enterpriseValue"]["fmt"]}}</strong
               >
-              <p class="featured-text stat_type_name">MarketCapitalization</p>
+              <p class="featured-text stat_type_name">EnterpriseValue</p>
             </div>
           </div>
 
           <div class="row">
             <div class="col stat_value_div featured-border-bottom">
-              <strong class="featured-numbers">${{data["EBITDA"]}}</strong>
+              <strong class="featured-numbers">${{d_f["body"]["ebitda"]["fmt"]}}</strong>
               <p class="featured-text stat_type_name">EBITDA</p>
             </div>
             <div
               class="col stat_value_div featured-border-start featured-border-bottom"
             >
-              <strong class="featured-numbers">${{data["EPS"]}}</strong>
-              <p class="featured-text stat_type_name">Earnings Per Share</p>
+              <strong class="featured-numbers">${{d_s["body"]["forwardEps"]["fmt"]}}</strong>
+              <p class="featured-text stat_type_name">Forward Earnings Per Share</p>
             </div>
           </div>
 
           <div class="row">
             <div class="col stat_value_div featured-border-bottom">
-              <strong class="featured-numbers">${{data["RevenueTTM"]}}</strong>
-              <p class="featured-text stat_type_name">Revenue</p>
+              <strong class="featured-numbers">${{d_f["body"]["totalRevenue"]["fmt"]}}</strong>
+              <p class="featured-text stat_type_name">Total Revenue</p>
             </div>
             <div
               class="col stat_value_div featured-border-start featured-border-bottom"
             >
-              <strong class="featured-numbers">${{data["EBITDA"]}}</strong>
+              <strong class="featured-numbers">${{d_f["body"]["grossProfits"]["fmt"]}}</strong>
               <p class="featured-text stat_type_name">Gross Profit</p>
             </div>
           </div>
 
           <div class="row">
             <div class="col stat_value_div featured-border-bottom">
-              <strong class="featured-numbers">${{data["PERatio"]}}</strong>
-              <p class="featured-text stat_type_name">PERatio</p>
+              <strong class="featured-numbers">${{d_s["body"]["forwardPE"]["fmt"]}}</strong>
+              <p class="featured-text stat_type_name">Forwaed PEratio</p>
             </div>
             <div
               class="col stat_value_div featured-border-start featured-border-bottom"
             >
               <strong class="featured-numbers">
-                {{data["DividendYield"]}}</strong
+                {{d_f["body"]["grossMargins"]["fmt"]}}</strong
               >
 
-              <p class="featured-text stat_type_name">DividendYield</p>
+              <p class="featured-text stat_type_name">Gross Margin</p>
             </div>
           </div>
 
           <div class="row">
             <div class="col stat_value_div featured-border-bottom">
               <strong class="featured-numbers"
-                >${{data["ReturnOnEquityTTM"]}}</strong
+                >${{d_f["body"]["returnOnEquity"]["fmt"]}}</strong
               >
               <p class="featured-text stat_type_name">ROE</p>
             </div>
@@ -168,7 +178,7 @@
               class="col stat_value_div featured-border-start featured-border-bottom"
             >
               <strong class="featured-numbers"
-                >${{data["ProfitMargin"]}}</strong
+                >${{d_s["body"]["profitMargins"]["fmt"]}}</strong
               >
               <p class="featured-text stat_type_name">ProfitMargin</p>
             </div>
@@ -176,20 +186,87 @@
 
           <div class="row">
             <div class="col stat_value_div featured-border-bottom">
-              <strong class="featured-numbers">${{data["52WeekHigh"]}}</strong>
-              <p class="featured-text stat_type_name">52WeekHigh</p>
+              <strong class="featured-numbers">${{d_s["body"]["52WeekChange"]["fmt"]}}</strong>
+              <p class="featured-text stat_type_name">52WeekChange</p>
             </div>
             <div
               class="col stat_value_div featured-border-start featured-border-bottom"
             >
-              <strong class="featured-numbers">${{data["52WeekLow"]}}</strong>
-              <p class="featured-text stat_type_name">52WeekLow</p>
+              <strong class="featured-numbers">${{d_s["body"]["SandP52WeekChange"]["fmt"]}}</strong>
+              <p class="featured-text stat_type_name">SandP52WeekChange</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Chart for the Particuar compnay -->
+
+  <!--<section class="projects section-padding" id="section_4">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 col-md-8 col-12 ms-auto">
+                        <div class="section-title-wrap d-flex justify-content-center align-items-center mb-4">
+                            <img src="images/white-desk-work-study-aesthetics.jpg" class="avatar-image img-fluid"
+                                alt="">
+
+                            <h2 class="text-white ms-4 mb-0">News About {{d_p["meta"]["symbol"]}}</h2>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                      <div id="myPlot" style="width:100%;max-width:700px"></div>
+                  
+                    </div>
+
+                  </div>
+            </div>
+        </section>-->
+
+
+  <section class="projects section-padding" id="section_4">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-8 col-md-8 col-12 ms-auto">
+                        <div class="section-title-wrap d-flex justify-content-center align-items-center mb-4">
+                            <img src="images/white-desk-work-study-aesthetics.jpg" class="avatar-image img-fluid"
+                                alt="">
+
+                            <h2 class="text-white ms-4 mb-0">News About {{d_p["meta"]["symbol"]}}</h2>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                  {% for news in d_n["body"] %}
+
+                   
+                    <div class="col-lg-4 col-md-6 col-12">
+                      <a href="{{news['link']}}" target="_blank">
+                        <div class="projects-thumb">
+                            <div class="projects-info">
+                                <small class="projects-tag">{{news['pubDate'][:-6]}}</small>
+
+                                <h3 class="projects-title">{{news['title']}}</h3>
+
+                                <p>{{news['description'][:300]}}</p>
+                            </div>
+                            <!--<img src="{{news['link']}}"
+                                    class="projects-image img-fluid" alt=""-->
+                        </div>
+                    </a>
+
+                    </div>
+
+                  {% endfor %}
+                  
+                </div>
+            </div>
+        </section>
 
   {% endblock%}
 </main>

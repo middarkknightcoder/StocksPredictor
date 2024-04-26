@@ -1,25 +1,30 @@
 {% extends "layout.html" %}
 {% block body%}
-
         <main>
-
             <!-- Company Stock Searching Part -->
-            
             <section class="hero d-flex justify-content-center align-items-center" id="section_1">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-7 col-12">
                             <div class="hero-text">
                                 <div class="hero-title-wrap d-flex align-items-center mb-4">
-                                    <img src="{{url_for("static" ,filename="images/happy-bearded-young-man.jpg")}}" class="avatar-image avatar-image-large img-fluid" alt="">
+                                    <img src="{{url_for("static" ,filename="images/market-research_search.png")}}" class="avatar-image avatar-image-large img-fluid" alt="market-research">
 
-                                    <h1 class="hero-title ms-3 mb-0">Hello traders!</h1>
+                                    <h1 class="hero-title ms-3 mb-0">Hello Researcher!</h1>
                                 </div>
                                 
                                 <h6>>> search Company name which stock you have to pridicts!</h6>
                                 <form action="/companyinfo" method="post">
-                                    <input class="mb-4 search-company-box" name="searchbar" type="search" id="searchInput" placeholder="Search stock symbol">
-                                    <ul id="suggestionsContainer"></ul>
+                                    <input
+                                        class="form-control mb-3 search-company-box"
+                                        type="search"
+                                        list="suggestionsContainer"
+                                        name="searchbar"
+                                        id="searchInput"
+                                        placeholder="Search for Company Stocks ....."
+                                        style="margin: 3% 0%;"/>
+                                    <datalist id="suggestionsContainer"></datalist>
+    
                                     <button class="custom-btn btn custom-link" type="submit" style="margin-top:1rem">Get Info</button>
                                 </form>
                             </div>
@@ -29,7 +34,6 @@
                             <div class="hero-image-wrap"></div>
                             <img src="{{url_for("static" ,filename="images/portrait-happy-excited-man-holding-laptop-computer.png")}}" class="hero-image img-fluid" alt="">
                         </div>
-
                     </div>
                 </div>
 
@@ -51,9 +55,9 @@
                             <div class="about-thumb">
 
                                 <div class="section-title-wrap d-flex justify-content-end align-items-center mb-4">
-                                    <h2 class="text-white me-4 mb-0">Hello Traderds!</h2>
+                                    <h2 class="text-white me-4 mb-0">About Us</h2>
 
-                                    <img src="{{url_for("static" ,filename="images/happy-bearded-young-man.jpg")}}" class="avatar-image img-fluid" alt="">
+                                    <img src="{{url_for("static" ,filename="images/information.png")}}" class="avatar-image img-fluid" alt="">
                                 </div>
 
                                 <h3 class="pt-2 mb-3">a little bit about website</h3>
@@ -76,7 +80,7 @@
 
             <div class="col-lg-10 col-12 mx-auto">
                 <div class="section-title-wrap d-flex justify-content-center align-items-center mb-5">
-                    <img src="https://img.etimg.com/thumb/width-1200,height-1200,imgsize-59020,resizemode-75,msid-101089125/top-trending-products/books/best-stock-market-books-unlocking-secrets-to-profits-strategies-and-financial-independence.jpg"
+                    <img src="{{url_for('static' ,filename="images/profit.png")}}"
                         class="avatar-image img-fluid" alt="">
 
                     <h2 class="text-white ms-4 mb-0">most actively Stocks</h2>
@@ -115,7 +119,7 @@
                 </div>
             </section>
 
-
+            
             <!-- Contact Section-->
 
 

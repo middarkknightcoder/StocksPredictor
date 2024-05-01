@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+
+<!-- 
+    # ********************* Librarys ************************
+
+    from flask_login import UserMixin   # this is used for the mixing of the user password.as
+from flask_wtf import FlaskForm 
+from wtforms import StringField ,PasswordField ,SubmitField   # This is used into the validation 
+from wtforms.validators import InputRequired ,Length ,ValidationError   # this is used for the validation chek in signup form
+
+
+# Connection with SQLAlchemy
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'  # Connection of the SQLLite database
+
+app.config['SECRECT_KEY'] = "thisisakeyofthegame"
+
+db = SQLAlchemy(app)
+
+# This is Class for Database Model
+class User(db.Model ,UserMixin):
+    
+    id = db.Column(db.Integer ,primary_key=True)
+    username = db.Column(db.String(30) ,nullable =False ,unique=True)
+    password = db.Column(db.String(80) ,nullable=False)    # Password number of string take 80
+    
+
+    # This class is used when user doing signup into the website
+class SignupForm(FlaskForm):
+    
+    username = StringField(validators=[InputRequired() ,Length(min=4 ,max=20)] ,render_kw={"placeholder" :"UserName"})
+
+    password = PasswordField(validators=[InputRequired() ,Length(min=4 ,max=20)] ,render_kw={"placeholder" : "Password"})
+
+    submit = SubmitField("Signup")    
+    
+    def validate_username(self, username):     # Function for check username when userenter in signup form
+        exist_user_username = User.query.filter_by(username=username.data).first()
+        
+        if exist_user_username:
+            raise ValidationError (
+                "That username is already exist. pls choose diffrent one."
+            )
+
+
+# This class is used when user doing login into the website
+class LoginForm(FlaskForm):
+    
+    username = StringField(validators=[InputRequired() ,Length(min=4 ,max=20)] ,render_kw={"placeholder" :"UserName"})
+
+    password = PasswordField(validators=[InputRequired() ,Length(min=4 ,max=20)] ,render_kw={"placeholder" : "Password"})
+
+    submit = SubmitField("Login")    
+ -->

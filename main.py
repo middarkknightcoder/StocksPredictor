@@ -1,7 +1,7 @@
 # hashumkh gamil id : b3d3d1da69msh07c6984268c8693p112945jsn43abebdc67cf
 
 from flask import Flask ,render_template ,request ,redirect ,session
-import mysql.connector
+import mysql.connector 
 from datetime import datetime
 from flask_bcrypt import Bcrypt
 
@@ -9,8 +9,8 @@ import requests
 import numpy as np
 import pandas as pd
 import os
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
-import tensorflow as tf
 import math
 
 from sklearn.preprocessing import MinMaxScaler
@@ -21,22 +21,24 @@ from tensorflow.keras.layers import Dense
 from tensorflow.keras.layers import LSTM
 
 
+   
 headers = {
 	"X-RapidAPI-Key": "08f1541678msh2a4747804150020p1237efjsn27b025299ffd",
 	"X-RapidAPI-Host": "yahoo-finance15.p.rapidapi.com"
 }
 
 app = Flask(__name__)   # Creation of the flask application 
+
 bcrypt = Bcrypt(app)
 
-# For connection with Mysql database
-
-conn = mysql.connector.connect(host="localhost", user="root" ,password="", database="stock_predictor")
-
-cursor = conn.cursor()    # This is used for represent database
 
 # Secret Key for session
 app.secret_key=os.urandom(24)     
+
+# For connection with Mysql database
+conn = mysql.connector.connect(host="localhost", user="root" ,password="", database="stock_predictor")
+
+cursor = conn.cursor()    # This is used for represent database
 
 # Funcation for the compare the two company
 
@@ -104,15 +106,6 @@ def create_dataset(dataset ,time_stemp):
     return np.array(x_data) ,np.array(y_data)
 
 # ********************************************* Routes for URL *********************************************
-
-@app.route("/home")
-def home():
-    if 'user_id' in session:
-        return render_template("index.html")
-    else:
-        return redirect("/")
-
-
 # Login and Singup Routes
 
 @app.route("/") 
@@ -121,6 +114,14 @@ def login_signup():
         return redirect("/home")
     else:
         return render_template("login_signup.html")
+    
+    
+@app.route("/home")
+def home():
+    if 'user_id' in session:
+        return render_template("index.html")
+    else:
+        return redirect("/")
 
 
 @app.route("/login" ,methods=["POST"])
@@ -131,8 +132,7 @@ def login_validation():
     cursor.execute("""SELECT * FROM `users` WHERE `email` LIKE '{}'""".format(Email))    # All database data is store into the cursor
     users = cursor.fetchall()
     
-    print(users)
-    if (len(users)>0):
+    if (len(users)>0):  
         if(bcrypt.check_password_hash(users[0][3],Password)):
             session['user_id'] = users[0][0]    # We are add loged in user id into the session 
             return redirect("/home")
@@ -227,14 +227,14 @@ def companyMoreDetails(ticker):
 
 @app.route("/compare" ,methods=["GET", "POST"])
 def compare():
-    
+
     if 'user_id' in session:
         
         if(request.method == "POST"):
 
             comp1 = request.form.get("comp1_inp")
             comp2 = request.form.get("comp2_inp")
-
+        
             url1 = "https://yahoo-finance15.p.rapidapi.com/api/yahoo/qu/quote/{}/default-key-statistics".format(comp1)
             url2 = "https://yahoo-finance15.p.rapidapi.com/api/yahoo/qu/quote/{}/default-key-statistics".format(comp2)
 
@@ -242,7 +242,6 @@ def compare():
 
             url1_2 = "https://yahoo-finance15.p.rapidapi.com/api/yahoo/qu/quote/{}/financial-data".format(comp1)
             url2_2 = "https://yahoo-finance15.p.rapidapi.com/api/yahoo/qu/quote/{}/financial-data".format(comp2)
-
 
             data1 = requests.get(url1, headers=headers).json()
             data2 = requests.get(url2,headers=headers).json()
@@ -271,7 +270,6 @@ def compare_result():
 def predict():
 
     if 'user_id' in session:
-        
         if(request.method=="POST"):
             ticker = request.form.get("search_comp")
             return redirect("/predict/" + ticker)
@@ -283,6 +281,7 @@ def predict():
 
 @app.route("/predict/<string:ticker>")
 def predict_result(ticker):
+    
     if 'user_id' in session:
         # Write a code for the featch data from the api and write code for the prediction on data .
         # You can send the predicted value into the prediction _result for the draw a graph.
@@ -374,7 +373,7 @@ def predict_result(ticker):
 
                 temp_input.extend(y_pred[0].tolist())
                 temp_input=temp_input[1:]
-
+                
                 lst_output.extend(y_pred.tolist())
                 i=i+1
 
@@ -401,10 +400,17 @@ def predict_result(ticker):
         dates = df["date"].tolist()
 
         return render_template("predict_result.html" ,pd=pred_data ,out_lst=out_lst,dates=dates)
-
     else:
         return redirect("/")
-    
+
+ 
+@app.route("/news" ,methods=["GET"])
+def News():
+    if 'user_id' in session:
+        return render_template("news.html")    
+    else:
+        return redirect("/")
+
 
 if (__name__ == "__main__"):
     app.run(debug=True)

@@ -104,11 +104,10 @@ fetch(api)
             discovermore.innerText = "Discover More";
             col2.appendChild(discovermore);
         }
-
     });
 
 
-const key = "947177d645fb46e592766f204655590c";
+const key = "7aa4e3af189146c7abccadd68c0e3841";
 const query = "business";
 const url = `https://newsapi.org/v2/everything?q=${query}&apiKey=${key}`;
 
@@ -119,9 +118,67 @@ fetch(req)
     .then((data) => {
         console.log(data.articles);
 
-        const news = document.querySelector("#news");
+        const front_news = document.querySelector("#front_news");
 
         for (let i = 0; i < 6; i++) {
+
+            const col = document.createElement("div");
+            col.classList.add("col-lg-4", "col-md-6", "col-12");
+            front_news.appendChild(col);
+
+            const newsPage = document.createElement("a");
+            newsPage.href = data.articles[i].url;
+            newsPage.target = "_blank"
+            col.appendChild(newsPage);
+
+            const col2 = document.createElement("div");
+            col2.classList.add("projects-thumb");
+            newsPage.appendChild(col2);
+
+            const col3 = document.createElement("div");
+            col3.classList.add("projects-info");
+            col2.appendChild(col3);
+
+            const source = document.createElement("small");
+            source.classList.add("projects-tag");
+            source.innerText = data.articles[i].source.name;
+            col3.appendChild(source);
+
+            const time = document.createElement("small");
+            time.innerText = ` ${data.articles[i].publishedAt}`;
+            col3.appendChild(time);
+
+            const title = document.createElement("h3");
+            title.classList.add("projects-title");
+            title.innerText = data.articles[i].title;
+            col3.appendChild(title);
+
+            const description = document.createElement("p");
+            description.innerText = data.articles[i].description;
+            col2.appendChild(description);
+
+            const newsimgZoom = document.createElement("a");
+            newsimgZoom.classList.add("popup-image");
+            newsimgZoom.href = data.articles[i].urlToImage;
+            col2.appendChild(newsimgZoom);
+
+            const newsimg = document.createElement("img");
+            newsimg.classList.add("projects-image", "img-fluid");
+            newsimg.src = data.articles[i].urlToImage;
+            newsimgZoom.appendChild(newsimg);
+
+        }
+    });
+
+
+fetch(req)
+    .then((res) => res.json())
+    .then((data) => {
+        console.log(data.articles);
+
+        const news = document.querySelector("#news");
+
+        for (let i = 0; i < 50; i++) {
 
             const col = document.createElement("div");
             col.classList.add("col-lg-4", "col-md-6", "col-12");
@@ -170,3 +227,5 @@ fetch(req)
 
         }
     });
+
+

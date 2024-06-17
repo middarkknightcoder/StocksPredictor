@@ -19,7 +19,7 @@
 import requests
 
 headers = {
-	"X-RapidAPI-Key": "b3d3d1da69msh07c6984268c8693p112945jsn43abebdc67cf",
+	"X-RapidAPI-Key": "08f1541678msh2a4747804150020p1237efjsn27b025299ffd",
 	"X-RapidAPI-Host": "yahoo-finance15.p.rapidapi.com"
 }
 

@@ -40,7 +40,6 @@
             />
             <ul id="suggestionsContainer"></ul>
           </div> -->
-          <script src="{{url_for("static" ,filename="js/auto_complete_search1.js")}}"></script>
       <h1 style="color: #14b789">VS</h1>
 
       <input
@@ -52,6 +51,7 @@
         placeholder="Search Company Stock symbol ....."
       />
       <datalist id="suggestionsContainer"> </datalist>
+      
       <button class="custom-btn btn mt-4 custom-link" type="submit">
         Compare Stocks
       </button>
@@ -73,5 +73,8 @@
     ></path>
   </svg>-->
 </section>
+
+<script src="{{url_for("static" ,filename="js/auto_complete_search_1.js")}}"></script>
+
 
 {% endblock%}

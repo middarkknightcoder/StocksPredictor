@@ -17,17 +17,22 @@
 
     <div class="compare_title">
       <h6 style="color: white">
-        >> Enter Compnay Name For Prediction of Future 30 Days Stock Price << 
+        >> Enter Compnay Name For Prediction of Future 30 Days Stock Price <<
       </h6>
     </div>
 
     <form class="predict_form" action="/predict" method="post">
-
       <div class="search-container">
-        <input class="form-control search-company-box" name="search_comp" type="text" id="search-bar" placeholder="Search...">
+        <input
+          class="form-control search-company-box"
+          name="search_comp"
+          type="text"
+          id="search-bar"
+          placeholder="Search..."
+        />
         <ul id="results"></ul>
-    </div>
-      <script src="{{url_for("static" ,filename="js/auto_complete_predict_search.js")}}"></script>
+      </div>
+      <!-- <script src="{{url_for("static" ,filename="js/auto_complete_predict_search.js")}}"></script> -->
 
       <!-- <div class="hero-text">
             <input
@@ -39,9 +44,9 @@
             />
             <ul id="suggestionsContainer"></ul>
           </div> -->
-          
+
       <button class="custom-btn btn mt-4 custom-link" type="submit">
-        Predict Stock Price 
+        Predict Stock Price
       </button>
     </form>
 
@@ -61,6 +66,5 @@
     ></path>
   </svg>-->
 </section>
-
 
 {% endblock%}

@@ -1,20 +1,32 @@
 {% extends "layout.html" %} {%block body%}
 
-<div class="table-container">
-  <table>
-    <thead>
+<section
+  class="d-flex justify-content-center align-items-center"
+  id="section_1"
+>
+  <!--<div class="predict_title">
+    <h4 style="color: white">
+      >> Today to Next 30 Day {{ticker}} Stock Price<<
+    </h4>
+  </div>-->
+
+  <table class="table compare_result_table">
+    <thead style="border-bottom: 2.5px solid #5fe943">
       <tr>
-        <th>Below Value is Next 30 Days Prediction</th>
+        <th class="comp_resu_tab_head" scope="col">Dates</th>
+        <th class="comp_resu_tab_head" scope="col">Predict Prices</th>
       </tr>
     </thead>
-    <tbody id="table-body">
-      {% for val in out_lst%}
+    <tbody class="table-group-divider">
+      {% for vales in out_lst %} {% set date = dates[loop.index-1] %} {% set val
+      = out_lst[loop.index-1] %}
       <tr>
-        <td>{{val}}</td>
+        <th class="comap_resu_indicator" scope="row">{{date}}</th>
+        <td class="comap_resu_values">{{val}}</td>
       </tr>
       {%endfor%}
     </tbody>
   </table>
-</div>
+</section>
 
 {% endblock%}

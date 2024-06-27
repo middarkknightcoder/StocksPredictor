@@ -2,7 +2,7 @@
 
 from flask import Flask ,render_template ,request ,redirect ,session
 import mysql.connector 
-from datetime import datetime
+from datetime import datetime, timedelta
 from flask_bcrypt import Bcrypt
 
 import requests
@@ -397,9 +397,14 @@ def predict_result(ticker):
 
         pred_data = df1_list + out_lst
 
-        dates = df["date"].tolist()
+        # dates = df["date"].tolist()
+        # Get the current date
+        current_date = datetime.now().date()
 
-        return render_template("predict_result.html" ,pd=pred_data ,out_lst=out_lst,dates=dates)
+        # Generate a list of dates for the next 30 days
+        date_list = [current_date + timedelta(days=i) for i in range(30)]
+
+        return render_template("predict_result.html" ,pd=pred_data ,out_lst=out_lst,dates=date_list ,ticker=ticker)
     else:
         return redirect("/")
 
@@ -413,7 +418,7 @@ def News():
 
 
 if (__name__ == "__main__"):
-    app.run(debug=True)
+    app.run(debug=True ,use_reloader=False)
 
 
 
